@@ -1126,7 +1126,11 @@
                 const res  = await fetch('https://api.github.com/users/yusufaksu5341/repos?sort=updated&per_page=9&type=public');
                 const repos = await res.json();
 
-                const filtered = repos.filter(r => !r.fork && r.name !== 'yusufaksu5341.github.io');
+                const filtered = repos.filter(r =>
+                    !r.fork &&
+                    r.owner.login === 'yusufaksu5341' &&
+                    r.name !== 'yusufaksu5341.github.io'
+                );
 
                 if (!filtered.length) {
                     grid.innerHTML = '<div class="projects-loading">Proje bulunamadı.</div>';
