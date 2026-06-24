@@ -513,6 +513,58 @@
 
         .contact-link:hover svg { opacity: 1; }
 
+        /* ── Section separator ── */
+        .section-sep {
+            width: 100%;
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 80px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .sep-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border), transparent);
+        }
+
+        .sep-blossom {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            color: var(--accent-light);
+            opacity: 0.35;
+            letter-spacing: 8px;
+        }
+
+        /* ── About text highlight ── */
+        .about-text strong {
+            color: var(--text-primary);
+            font-weight: 400;
+        }
+
+        /* ── Section label with line ── */
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .section-label::after {
+            content: '';
+            display: block;
+            flex: 0 0 40px;
+            height: 1px;
+            background: var(--accent-light);
+            opacity: 0.4;
+        }
+
+        /* ── Contact card top accent ── */
+        .contact-card:first-child {
+            border-left: 2px solid var(--accent);
+        }
+
         /* ── Footer ── */
         footer {
             position: relative;
@@ -683,6 +735,12 @@
             </div>
         </section>
 
+        <div class="section-sep">
+            <div class="sep-line"></div>
+            <span class="sep-blossom">✿ ✿ ✿</span>
+            <div class="sep-line"></div>
+        </div>
+
         <!-- About -->
         <section id="about">
             <div class="section-label reveal">01 / Hakkımda</div>
@@ -711,6 +769,12 @@
                 </div>
             </div>
         </section>
+
+        <div class="section-sep">
+            <div class="sep-line"></div>
+            <span class="sep-blossom">✿ ✿ ✿</span>
+            <div class="sep-line"></div>
+        </div>
 
         <!-- Skills -->
         <section id="skills">
@@ -777,6 +841,12 @@
             </div>
         </section>
 
+        <div class="section-sep">
+            <div class="sep-line"></div>
+            <span class="sep-blossom">✿ ✿ ✿</span>
+            <div class="sep-line"></div>
+        </div>
+
         <!-- Experience -->
         <section id="experience">
             <div class="section-label reveal">03 / Deneyim</div>
@@ -835,6 +905,12 @@
                 </div>
             </div>
         </section>
+
+        <div class="section-sep">
+            <div class="sep-line"></div>
+            <span class="sep-blossom">✿ ✿ ✿</span>
+            <div class="sep-line"></div>
+        </div>
 
         <!-- Contact -->
         <section id="contact">
