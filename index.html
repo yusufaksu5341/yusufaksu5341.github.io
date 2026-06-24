@@ -404,6 +404,80 @@
             transition: color 0.3s ease;
         }
 
+        /* ── Projects ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--border);
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            padding: 32px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .project-card:hover { background: var(--bg-card-alt); }
+
+        .project-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .project-card:hover .project-name { color: var(--petal); }
+
+        .project-desc {
+            font-size: 13px;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.7;
+            flex: 1;
+        }
+
+        .project-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 4px;
+        }
+
+        .project-lang {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--accent-light);
+            text-transform: uppercase;
+        }
+
+        .project-stars {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .projects-loading {
+            grid-column: 1 / -1;
+            padding: 48px;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            background: var(--bg-card);
+        }
+
+        @media (max-width: 1024px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px)  { .projects-grid { grid-template-columns: 1fr; } }
+
         /* ── Experience ── */
         .experience-list {
             display: flex;
@@ -844,9 +918,30 @@
             <div class="sep-line"></div>
         </div>
 
+        <div class="section-sep">
+            <div class="sep-line"></div>
+            <span class="sep-blossom">✿ ✿ ✿</span>
+            <div class="sep-line"></div>
+        </div>
+
+        <!-- Projects -->
+        <section id="projects">
+            <div class="section-label reveal">03 / Projeler</div>
+            <h2 class="section-title reveal">GitHub <em>Projelerim</em></h2>
+            <div class="projects-grid reveal" id="projects-grid">
+                <div class="projects-loading">Yükleniyor…</div>
+            </div>
+        </section>
+
+        <div class="section-sep">
+            <div class="sep-line"></div>
+            <span class="sep-blossom">✿ ✿ ✿</span>
+            <div class="sep-line"></div>
+        </div>
+
         <!-- Experience -->
         <section id="experience">
-            <div class="section-label reveal">03 / Deneyim</div>
+            <div class="section-label reveal">04 / Deneyim</div>
             <h2 class="section-title reveal">Tecrübeler & <em>Projeler</em></h2>
 
             <div class="experience-list">
@@ -911,7 +1006,7 @@
 
         <!-- Contact -->
         <section id="contact">
-            <div class="section-label reveal">04 / İletişim</div>
+            <div class="section-label reveal">05 / İletişim</div>
             <h2 class="section-title reveal">Bana <em>Ulaşın</em></h2>
 
             <div class="contact-layout">
@@ -1023,6 +1118,37 @@
         }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
         document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+        // ── GitHub Projects ──
+        (async function loadProjects() {
+            const grid = document.getElementById('projects-grid');
+            try {
+                const res  = await fetch('https://api.github.com/users/yusufaksu5341/repos?sort=updated&per_page=9&type=public');
+                const repos = await res.json();
+
+                const filtered = repos.filter(r => !r.fork && r.name !== 'yusufaksu5341.github.io');
+
+                if (!filtered.length) {
+                    grid.innerHTML = '<div class="projects-loading">Proje bulunamadı.</div>';
+                    return;
+                }
+
+                grid.innerHTML = filtered.slice(0, 6).map(r => `
+                    <a class="project-card" href="${r.html_url}" target="_blank" rel="noopener">
+                        <div class="project-name">${r.name}</div>
+                        <p class="project-desc">${r.description || '—'}</p>
+                        <div class="project-meta">
+                            ${r.language ? `<span class="project-lang">${r.language}</span>` : ''}
+                            ${r.stargazers_count > 0 ? `<span class="project-stars">★ ${r.stargazers_count}</span>` : ''}
+                        </div>
+                    </a>
+                `).join('');
+
+                document.querySelectorAll('.project-card').forEach(el => revealObs.observe(el));
+            } catch {
+                grid.innerHTML = '<div class="projects-loading">Projeler yüklenemedi.</div>';
+            }
+        })();
 
         // ── Nav scroll ──
         const nav = document.getElementById('main-nav');
