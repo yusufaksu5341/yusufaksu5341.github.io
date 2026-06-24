@@ -538,6 +538,60 @@
             opacity: 0.35;
         }
 
+        /* ── Stat card accent bar ── */
+        .stat-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(to right, var(--accent-light), var(--petal));
+            transition: width 0.5s ease;
+        }
+
+        .stat-card:hover::after { width: 100%; }
+
+        /* ── Exp card left accent ── */
+        .exp-card {
+            position: relative;
+        }
+
+        .exp-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: transparent;
+            transition: background 0.4s ease;
+        }
+
+        .exp-card:hover::before {
+            background: linear-gradient(to bottom, var(--accent-light), transparent);
+        }
+
+        /* ── Hero name shimmer ── */
+        .hero-name em {
+            background: linear-gradient(120deg, var(--petal) 0%, #e8a0a8 40%, var(--petal) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 5s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0%   { background-position: 200% center; }
+            100% { background-position: -200% center; }
+        }
+
         /* ── Reveal animation ── */
         .reveal {
             opacity: 0;
