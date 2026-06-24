@@ -380,11 +380,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0.65;
+            opacity: 0.7;
             flex-shrink: 0;
         }
 
-        .skill-icon-wrap svg { width: 26px; height: 26px; }
+        .skill-icon-wrap img {
+            width: 26px;
+            height: 26px;
+            object-fit: contain;
+            filter: grayscale(20%);
+            transition: filter 0.3s ease, opacity 0.3s ease;
+        }
+
+        .skill-item:hover .skill-icon-wrap img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
 
         .skill-name {
             font-size: 14px;
@@ -790,58 +801,37 @@
             <div class="skills-grid reveal">
                 <div class="skill-item">
                     <div class="skill-icon-wrap">
-                        <svg viewBox="0 0 48 48" fill="none">
-                            <path d="M24 4L6 14V34L24 44L42 34V14L24 4Z" fill="#02569B"/>
-                            <path d="M24 24L6 14L24 4L42 14L24 24Z" fill="#0175C2"/>
-                            <path d="M24 24L6 34V14L24 24Z" fill="#13B9FD"/>
-                            <path d="M24 24V44L42 34V14L24 24Z" fill="#0175C2"/>
-                        </svg>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt="Flutter">
                     </div>
                     <span class="skill-name">Flutter & Dart</span>
                 </div>
                 <div class="skill-item">
                     <div class="skill-icon-wrap">
-                        <svg viewBox="0 0 48 48" fill="none">
-                            <rect width="48" height="48" rx="2" fill="#F7DF1E"/>
-                            <text x="24" y="34" font-family="Arial" font-size="22" font-weight="bold" fill="#000" text-anchor="middle">JS</text>
-                        </svg>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript">
                     </div>
                     <span class="skill-name">JavaScript</span>
                 </div>
                 <div class="skill-item">
                     <div class="skill-icon-wrap">
-                        <svg viewBox="0 0 48 48" fill="none">
-                            <circle cx="24" cy="24" r="20" fill="#3776AB"/>
-                            <circle cx="24" cy="14" r="4" fill="#FFD43B"/>
-                            <circle cx="24" cy="34" r="4" fill="#3776AB" stroke="#FFD43B" stroke-width="1.5"/>
-                        </svg>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python">
                     </div>
                     <span class="skill-name">Python</span>
                 </div>
                 <div class="skill-item">
                     <div class="skill-icon-wrap">
-                        <svg viewBox="0 0 48 48" fill="none">
-                            <rect x="4" y="4" width="40" height="40" rx="4" fill="#68217A"/>
-                            <text x="24" y="32" font-family="Arial" font-size="18" font-weight="bold" fill="white" text-anchor="middle">C#</text>
-                        </svg>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" alt="C#">
                     </div>
                     <span class="skill-name">C#</span>
                 </div>
                 <div class="skill-item">
                     <div class="skill-icon-wrap">
-                        <svg viewBox="0 0 48 48" fill="none">
-                            <path d="M8 4L11 38L24 42L37 38L40 4H8Z" fill="#E34F26"/>
-                            <path d="M24 8V38.5L33 37L35.5 8H24Z" fill="#EF652A"/>
-                        </svg>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5">
                     </div>
                     <span class="skill-name">HTML / CSS</span>
                 </div>
                 <div class="skill-item">
                     <div class="skill-icon-wrap">
-                        <svg viewBox="0 0 48 48" fill="none">
-                            <circle cx="24" cy="24" r="20" fill="#00A3CC" opacity="0.9"/>
-                            <text x="24" y="27" font-family="Arial" font-size="10" font-weight="bold" fill="white" text-anchor="middle">ML/AI</text>
-                        </svg>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" alt="ML/AI">
                     </div>
                     <span class="skill-name">ML / AI</span>
                 </div>
